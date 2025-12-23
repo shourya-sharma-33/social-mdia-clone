@@ -1,8 +1,6 @@
-// THIS IS THE ALOT BOILERPLATE ALOT FORMATING ALOT PROVIDING
-
 // IMPORTS
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Outfit, Nunito } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/ThemeProvider";
@@ -11,22 +9,24 @@ import Sidebar from "@/components/Sidebar";
 import { Toaster } from "react-hot-toast";
 // END - IMPORTS
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+// FONTS
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
+const nunito = Nunito({
+  subsets: ["latin"],
+  variable: "--font-nunito",
+  weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
+});
+
+// METADATA
 export const metadata: Metadata = {
   title: "SocialMedia",
   description: "A modern social media application powered by Next.js",
 };
-
 
 export default function RootLayout({
   children,
@@ -34,15 +34,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // WE WRAP AROUND CLERK PROVIDER
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <body
+          className={`${outfit.variable} ${nunito.variable} antialiased`}
+        >
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
-            disableTransitionOnChange
+            themes={["light", "dark", "pink"]}
           >
             <div className="min-h-screen">
               <Navbar />
@@ -51,19 +52,17 @@ export default function RootLayout({
                 <div className="max-w-7xl mx-auto px-4">
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
                     <div className="hidden lg:block lg:col-span-3">
-                      {/* 
-                        SIDEBAR
-                      */}
                       <Sidebar />
                     </div>
-                    {/* 
-                      CHILDREN HELPS US WRAP THE SAID ROUTE CONTENT AROUND IT
-                    */}
-                    <div className="lg:col-span-9">{children}</div>
+
+                    <div className="lg:col-span-9">
+                      {children}
+                    </div>
                   </div>
                 </div>
               </main>
             </div>
+
             <Toaster />
           </ThemeProvider>
         </body>

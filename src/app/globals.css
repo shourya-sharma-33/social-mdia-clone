@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -14,6 +10,11 @@ body {
 
 @layer base {
   :root {
+    /* FONTS */
+    --font-outfit: 'Outfit', sans-serif;
+    --font-nunito: 'Nunito', sans-serif;
+
+    /* COLORS */
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
@@ -40,6 +41,7 @@ body {
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -66,13 +68,49 @@ body {
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
-}
 
-@layer base {
+    .pink {
+      --background: 330 100% 97%;
+      --foreground: 330 15% 15%;
+  
+      --card: 330 100% 99%;
+      --card-foreground: 330 15% 15%;
+  
+      --popover: 330 100% 99%;
+      --popover-foreground: 330 15% 15%;
+  
+      --primary: 330 85% 60%;
+      --primary-foreground: 0 0% 100%;
+  
+      --secondary: 330 60% 90%;
+      --secondary-foreground: 330 40% 25%;
+  
+      --muted: 330 40% 92%;
+      --muted-foreground: 330 20% 45%;
+  
+      --accent: 330 75% 88%;
+      --accent-foreground: 330 40% 20%;
+  
+      --destructive: 0 84% 60%;
+      --destructive-foreground: 0 0% 100%;
+  
+      --border: 330 30% 85%;
+      --input: 330 30% 85%;
+      --ring: 330 85% 60%;
+  
+      --chart-1: 330 85% 60%;
+      --chart-2: 300 70% 55%;
+      --chart-3: 270 65% 50%;
+      --chart-4: 350 75% 65%;
+      --chart-5: 310 80% 58%;
+    }
+
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-outfit);
   }
 }
